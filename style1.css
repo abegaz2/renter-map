@@ -1,3 +1,4 @@
+
  .intro {
 	width: 700px;
 	margin: auto;
@@ -31,9 +32,9 @@
 	margin: auto;
 }
 
-.homeworkmap {
-	width: 800px;
-	height: 800px;
+#map {
+	width: 500px;
+	height: 400px;
 	margin: auto;
 }
 
@@ -42,4 +43,5 @@
 	text-align: left;
 	font-size: 12pt;
 	width: 800px;
+	height: 400px;
 	margin: auto;
