@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<title>Rental Housing Repair Map</title>
+<title>Early Childhood Learning Centers</title>
 <link rel="stylesheet" href="style1.css"> 
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400&display=swap" rel="stylesheet">
 
@@ -16,23 +16,26 @@
 
 <!-- Copy your Leaflet Basemap Provider Link Here: -->
  <script src="js/leaflet-providers.js"></script>
+
+ <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
 </head>
 
 
 <body>
 
 <div class = "intro">
-<h1>Rental Housing Repair Map</h1>
+<h1>Early Childhood Learning Centers - Chicago</h1>
 
-<h2>Renter generated submissions about repair work that needs to be done in their rental homes can help renters and organizers better understand the breadth of issues in their geographic areas</h2>
+<h2>Early Childhood Learning Centers all over Chicago have varying availabilities and age ranges. This map will help parents looking for early childhood learning centers narrow down their choices.</h2>
 
 
 </div>
 
 <!--explains the problem of access to childcare-->
 <div class = "rentersrights">
-  <p>Renters' rights vary widely by state and the process of enforcing your repair rights is often onerous, especially for low-income and disabled tenants. </p>
-  <p> <a href="https://www.hud.gov/topics/rental_assistance/tenantrights">HUD</a> links to different tenant resources in all fifty states.</p> 
+  <p>Different Chicago ELCs have vary in quantity and quality across the city. Some, like <a href="chicagoearlylearning.org">Chicago Early Learning</a> offer online learning for young children.  </p> 
 </div>
 
 <div class = "mapdescription">
@@ -55,38 +58,27 @@ var Stamen_TonerLite = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/to
 	ext: 'png'
 }).addTo(map);
 
-var blueCircle = L.circle([41.87, -87.63],{
-	color: 'blue',
-  fillColor: '#3386FF',
-  fillOpacity: 0.5,
-  radius: 750,
-}).addTo(map).bindPopup("here is a circle in Chicago");
-
-var anotherCircle = L.circle([41.88, -87.61],{
-  color: 'blue',
-  fillColor: '#3386FF',
-  fillOpacity: 0.2,
-  radius: 1500,
-}).addTo(map).bindPopup("here is a ANOTHER circle in Chicago");
-
-var line = L.polyline([
-    [41.88, -87.65],
-    [41.90, -87.67],
-    [41.92, -87.69],
-    [41.98, -87.71],
-]).addTo(map).bindPopup("Here is a beautiful line");
-
-
-var polygon = L.polygon([
-    [41.87, -87.60],
-    [41.92, -87.57],
-    [41.91, -87.67],
-    [41.85, -87.62],
-], {
-  color: '#33ECFF', 
-  fillColor: '#33ECFF',
-  fillOpacity: .2,
-}).addTo(map).bindPopup("More blue stuff");
+$.getJSON("EarlyLearningPrograms_Chicago.geojson",function(data){
+	L.geoJSON(data, {
+		pointToLayer: function(feature, latlng) {
+			var programColor;
+			var programInformation = feature.properties.Program_Information;
+			if ( ProgramInformation == "Community Based" ) programColor = "blue";
+			else programColor = "red";
+			return new L.CircleMarker(latlng, 
+				{	radius: 3,
+					fillOpacity: 1,
+					fillColor: agesColor,
+					color: 'orange',
+					weight: .5, 
+				});
+		},
+		onEachFeature: function(feature, layer){
+			layer.bindPopup("<strong>"+ feature.properties.Site_Name + "</strong><br/>" + "Ages Served :" + feature.properties.Ages_Served + "<br/>" + "Accreditation: " + feature.properties.Accreditation)
+		}
+			}).addTo(map);
+		});
+				
 
 
 </script>
