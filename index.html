@@ -59,26 +59,26 @@ var Stamen_TonerLite = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/to
 }).addTo(map);
 
 $.getJSON("EarlyLearningPrograms_Chicago.geojson",function(data){
-  L.geoJSON(data, {
-    pointToLayer: function(feature, latlng) {
-      var programColor;
-      var programAvailability = feature.properties.Weekday_Availability;
-      if (programAvailability == "None") programColor = "red";
-      else programColor = "blue";
-      return new L.CircleMarker(latlng, 
-        { radius: 3,
-          fillOpacity: 0.25,
-          fillColor: programColor,
-          color: 'red',
-          weight: .5, 
-        });
-    },
-    onEachFeature: function(feature, layer){
-      layer.bindPopup("<strong>"+ feature.properties.Site_Name + "</strong><br/>" + "Ages Served :" + feature.properties.Ages_Served + "<br/>" + "Accreditation: " + feature.properties.Accreditation)
-    }
-      }).addTo(map);
-    });
-        
+	L.geoJSON(data, {
+		pointToLayer: function(feature, latlng) {
+			var programColor;
+			var programInformation = feature.properties.Program_Information;
+			if ( ProgramInformation == "Community Based" ) programColor = "blue";
+			else programColor = "red";
+			return new L.CircleMarker(latlng, 
+				{	radius: 3,
+					fillOpacity: 1,
+					fillColor: agesColor,
+					color: 'orange',
+					weight: .5, 
+				});
+		},
+		onEachFeature: function(feature, layer){
+			layer.bindPopup("<strong>"+ feature.properties.Site_Name + "</strong><br/>" + "Ages Served :" + feature.properties.Ages_Served + "<br/>" + "Accreditation: " + feature.properties.Accreditation)
+		}
+			}).addTo(map);
+		});
+				
 
 </script>
 
