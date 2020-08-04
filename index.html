@@ -2,8 +2,8 @@
 <html>
 
 <head>
-<title>Early Childhood Learning Centers</title>
-<link rel="stylesheet" href="style1.css"> 
+<title>UPP 465</title>
+<link rel="stylesheet" href="style.css"> 
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400&display=swap" rel="stylesheet">
 
 <!-- Copy your leaflet link here:  -->
@@ -17,29 +17,27 @@
 <!-- Copy your Leaflet Basemap Provider Link Here: -->
  <script src="js/leaflet-providers.js"></script>
 
- <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-
+<!-- Add jQuery  -->
+<script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script> 
 </head>
 
 
 <body>
 
 <div class = "intro">
-<h1>Early Childhood Learning Centers - Chicago</h1>
-
-<h2>Early Childhood Learning Centers all over Chicago have varying availabilities and age ranges. This map will help parents looking for early childhood learning centers narrow down their choices.</h2>
+<h1>Chicago Early Learning Centers</h1>
+<h3>Exploring access to ELC's in Chicago communities with high birth rates</h3>
 
 
 </div>
 
 <!--explains the problem of access to childcare-->
-<div class = "rentersrights">
-  <p>Different Chicago ELCs have vary in quantity and quality across the city. Some, like <a href="chicagoearlylearning.org">Chicago Early Learning</a> offer online learning for young children.  </p> 
+<div class = "childcare">
+	<p> Of the 700 ELC's in the City of Chicago, only 150 of them serve children under the age of 3.  Limited access to care for newborns puts a burden on parents. </p>
+	<p> Learn more about early learning centers <a href="https://www.chicago.gov/city/en/sites/chicagoearlylearning/home.html">here</a></p> 
 </div>
 
-<div class = "mapdescription">
-  <p>The below map shows Chicago ELC's color coded by type. Community based ELC's are in blue, and all other types (CPS based and office based) are in red.</p>
 
 <div id = "map"><!-- Using Leaflet below, we will put a map in this div --></div>
 
@@ -57,7 +55,6 @@ var Stamen_TonerLite = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/to
 	maxZoom: 20,
 	ext: 'png'
 }).addTo(map);
-
 
 // load Chicago ELC GeoJSON File
 $.getJSON("EarlyLearningPrograms_Chicago.geojson",function(data){
