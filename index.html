@@ -63,12 +63,12 @@ $.getJSON("EarlyLearningPrograms_Chicago.geojson",function(data){
 		pointToLayer: function(feature, latlng) {
 			var programColor;
 			var programInformation = feature.properties.Program_Information;
-			if ( ProgramInformation == "Community Based" ) programColor = "blue";
+			if (programInformation == "Community Based" ) programColor = "blue";
 			else programColor = "red";
 			return new L.CircleMarker(latlng, 
 				{	radius: 3,
 					fillOpacity: 1,
-					fillColor: agesColor,
+					fillColor: programColor,
 					color: 'orange',
 					weight: .5, 
 				});
