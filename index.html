@@ -2,7 +2,7 @@
 <html>
 
 <head>
-<title>Early Childhood Learning Centers</title>
+<title>Rental Housing Repair Map</title>
 <link rel="stylesheet" href="style1.css"> 
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400&display=swap" rel="stylesheet">
 
@@ -26,7 +26,7 @@
 <body>
 
 <div class = "intro">
-<h1>Early Childhood Learning Centers - Chicago</h1>
+<h1>Rental Housing Repair Map</h1>
 
 <h2>Early Childhood Learning Centers all over Chicago have varying availabilities and age ranges. This map will help parents looking for early childhood learning centers narrow down their choices.</h2>
 
@@ -35,7 +35,7 @@
 
 <!--explains the problem of access to childcare-->
 <div class = "rentersrights">
-  <p>Different Chicago ELCs have vary in quantity and quality across the city. Some, like <a href="chicagoearlylearning.org">Chicago Early Learning</a> offer online learning for young children.  </p> 
+  <p>Different Chicago ELCs have vary in quantity and quality across the city. Some, like <a href="chicagoearlylearning.org">Chicago Early Learning</a> offer online learning for young children.</p> 
 </div>
 
 <div class = "mapdescription">
@@ -59,26 +59,26 @@ var Stamen_TonerLite = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/to
 }).addTo(map);
 
 $.getJSON("EarlyLearningPrograms_Chicago.geojson",function(data){
-	L.geoJSON(data, {
-		pointToLayer: function(feature, latlng) {
-			var programColor;
-			var programInformation = feature.properties.Program_Information;
-			if ( ProgramInformation == "Community Based" ) programColor = "blue";
-			else programColor = "red";
-			return new L.CircleMarker(latlng, 
-				{	radius: 3,
-					fillOpacity: 1,
-					fillColor: programColor,
-					color: 'orange',
-					weight: .5, 
-				});
-		},
-		onEachFeature: function(feature, layer){
-			layer.bindPopup("<strong>"+ feature.properties.Site_Name + "</strong><br/>" + "Ages Served :" + feature.properties.Ages_Served + "<br/>" + "Accreditation: " + feature.properties.Accreditation)
-		}
-			}).addTo(map);
-		});
-				
+  L.geoJSON(data, {
+    pointToLayer: function(feature, latlng) {
+      var programColor;
+      var programInformation = feature.properties.Program_Information;
+      if ( ProgramInformation == "Community Based" ) programColor = "blue";
+      else programColor = "red";
+      return new L.CircleMarker(latlng, 
+        { radius: 3,
+          fillOpacity: 1,
+          fillColor: agesColor,
+          color: 'orange',
+          weight: .5, 
+        });
+    },
+    onEachFeature: function(feature, layer){
+      layer.bindPopup("<strong>"+ feature.properties.Site_Name + "</strong><br/>" + "Ages Served :" + feature.properties.Ages_Served + "<br/>" + "Accreditation: " + feature.properties.Accreditation)
+    }
+      }).addTo(map);
+    });
+        
 
 </script>
 
